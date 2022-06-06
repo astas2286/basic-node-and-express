@@ -21,9 +21,19 @@ app.get('/now', function (req, res, next) { // render actual time//
     });
 });
 
-app.get("/:word/echo", function(req, res){
-    const {word} = req.params;
-    debugger
+app.get("/name", function (req, res) {
+    console.log(req.query);
+    let firstName = req.query.first;
+    let lastName = req.query.last;
+    res.json({
+        name:`${firstName} ${lastName}`
+    });
+});
+
+app.get("/:word/echo", function (req, res) {
+    const {
+        word
+    } = req.params;
     res.json({
         echo: word
     });
