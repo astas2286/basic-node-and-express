@@ -12,7 +12,7 @@ app.use(function (req, res, next) {
     next();
 })
 
-app.get('/now', function (req, res, next) { // render actual time
+app.get('/now', function (req, res, next) { // render actual time//
     req.time = new Date().toString();
     next();
 }, function (req, res) {
