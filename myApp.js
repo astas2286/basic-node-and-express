@@ -12,7 +12,7 @@ app.use(function (req, res, next) {
     next();
 })
 
-app.get('/now', function (req, res, next) {
+app.get('/now', function (req, res, next) { // render actual time
     req.time = new Date().toString();
     next();
 }, function (req, res) {
@@ -21,11 +21,19 @@ app.get('/now', function (req, res, next) {
     });
 });
 
+app.get("/:word/echo", function(req, res){
+    const {word} = req.params;
+    debugger
+    res.json({
+        echo: word
+    });
+});
+
 app.get("/", function (req, res) {
     res.sendFile(__dirname + "/views/index.html");
 });
 
-app.use("/public", express.static(__dirname + "/public"));
+app.use("/public", express.static(__dirname + "/public")); // added css styles
 
 app.get("/json", function (req, res) {
     if (process.env.MESSAGE_STYLE === 'uppercase') {
