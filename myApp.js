@@ -9,12 +9,9 @@ console.log("Hello World")
 //     res.send("Hello Express");
 // });
 
-// app.use(bodyParser.urlencoded({
-//     extended: false
-// }));
-// app.use(bodyParser.json());
-
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 app.use(bodyParser.json())
 
@@ -32,7 +29,7 @@ app.get('/now', function (req, res, next) { // render actual time//
     });
 });
 
-app.get("/name", function (req, res) {
+app.get("/name", function (req, res) { // query string
     console.log(req.query);
     let firstName = req.query.first;
     let lastName = req.query.last;
@@ -66,6 +63,13 @@ app.get("/json", function (req, res) {
             "message": "Hello json"
         });
     }
+});
+
+app.post("/name", function (req, res) {
+    let string = req.body.first + " " + req.body.last;
+    res.json({
+        name: string
+    });
 });
 
 
